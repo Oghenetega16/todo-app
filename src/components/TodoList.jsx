@@ -20,7 +20,6 @@ export default function TodoList(props) {
                 <span>{props.list}</span>
             </div>
             <img className="close-icon" src={closeIcon} alt=""/>
-        </li>
-                
+        </li>          
     )
 }

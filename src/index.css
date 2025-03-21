@@ -32,6 +32,10 @@ body {
   --active-color: hsl(220, 98%, 61%);
 }
 
+header svg {
+  cursor: pointer;
+}
+
 .header {
   color: white;
   display: flex;
@@ -74,6 +78,7 @@ h1 {
   border: 1px solid var(--feature-color);
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .todo-list .circle:hover {

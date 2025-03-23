@@ -1,15 +1,16 @@
+import { useState } from'react'
 import Header from './components/Header'
 import TodoInput from './Components/TodoInput'
 import TodoList from './Components/TodoList'
 import TodoStatus from './components/TodoStatus'
 import TodoFeatures from './components/TodoFeatures'
 import Footer from './components/Footer'
-import { useState } from'react'
 
 export default function App() {
 
   const [input, setInput] = useState('')
   const [items, setItems] = useState([])
+  const [checked, setChecked] = useState(false)
 
   function handleChange(event) {
     const inputValue = event.target.value
@@ -23,6 +24,10 @@ export default function App() {
     }
   }
 
+  function handleCheck() {
+      setChecked(!checked)
+  }
+  
   return (
     <>
       <Header />
@@ -31,11 +36,11 @@ export default function App() {
             <div className="todo-list">
               <ul>
                 {items.map((item, index) => (
-                  <TodoList key={index} list={item} />
+                  <TodoList key={index} list={item} handleCheck={handleCheck} checked={checked}/>
                 ))}
               </ul>
             </div>
-            <TodoStatus />
+            <TodoStatus items={items} checked={checked}/>
             <TodoFeatures />
         </div>
       <Footer />

@@ -47,3 +47,7 @@ export default function App() {
     </>
   )
 }
+
+// What's left to do?:
+// 1. Make the list checkable
+// 2. Work on the All, Active and Completed buttons

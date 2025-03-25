@@ -1,53 +1,73 @@
-import { useState } from'react'
+import { useState } from 'react'
 import Header from './components/Header'
-import TodoInput from './Components/TodoInput'
-import TodoList from './Components/TodoList'
+import TodoInput from './components/TodoInput'
+import TodoList from './components/TodoList'
 import TodoStatus from './components/TodoStatus'
 import TodoFeatures from './components/TodoFeatures'
 import Footer from './components/Footer'
 
 export default function App() {
-
   const [input, setInput] = useState('')
   const [items, setItems] = useState([])
-  const [checked, setChecked] = useState(false)
+  const [filter, setFilter] = useState('All');
 
   function handleChange(event) {
-    const inputValue = event.target.value
-    setInput(inputValue)
+    setInput(event.target.value)
   }
 
   function addItem(event) {
-    if(event.key === 'Enter' && input.trim() !== '') {
-      setItems(prevItems => [...prevItems, input])
+    if (event.key === 'Enter' && input.trim() !== '') {
+      setItems(prevItems => [...prevItems, { text: input, checked: false }])
       setInput('')
     }
   }
 
-  function handleCheck() {
-      setChecked(!checked)
+  function handleCheck(index) {
+    setItems(prevItems =>
+      prevItems.map((item, i) =>
+        i === index ? { ...item, checked: !item.checked } : item
+      )
+    )
   }
-  
+
+  function handleDeleteItem(index) {
+    setItems(prevItems => prevItems.filter((_, i) => i !== index));
+  }
+
+  function clearCompleted() {
+    setItems(prevItems => prevItems.filter(item => !item.checked));
+  }
+
+  // Filtered items based on the selected filter
+  const filteredItems = items.filter(item => {
+    if (filter === 'Active') return !item.checked;
+    if (filter === 'Completed') return item.checked;
+    return true // 'All' case
+  })
+
   return (
     <>
       <Header />
-        <div className="main">
-          <TodoInput handleChange={handleChange} addItem={addItem} input={input} />
-            <div className="todo-list">
-              <ul>
-                {items.map((item, index) => (
-                  <TodoList key={index} list={item} handleCheck={handleCheck} checked={checked}/>
-                ))}
-              </ul>
-            </div>
-            <TodoStatus items={items} checked={checked}/>
-            <TodoFeatures />
+      <div className="main">
+        <TodoInput 
+          handleChange={handleChange} addItem={addItem} input={input} />
+        <div className="todo-list">
+          <ul>
+            {filteredItems.map((item, index) => (
+              <TodoList
+                key={index}
+                list={item.text}
+                checked={item.checked}
+                handleCheck={() => handleCheck(index)}
+                handleDeleteItem={() => handleDeleteItem(index)}
+              />
+            ))}
+          </ul>
         </div>
+        <TodoStatus items={items} filter={filter} clearCompleted={clearCompleted} />
+        <TodoFeatures setFilter={setFilter} filter={filter} />
+      </div>
       <Footer />
     </>
   )
 }
-
-// What's left to do?:
-// 1. Make the list checkable
-// 2. Work on the All, Active and Completed buttons

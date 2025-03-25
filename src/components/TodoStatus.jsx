@@ -1,10 +1,19 @@
+export default function TodoStatus({ items, filter, clearCompleted }) {
+    let itemsLeft = items.filter(item => !item.checked).length;
+    let filteredCount = 0;
 
-export default function TodoFeatures({items, checked}) {
+    if (filter === 'All') {
+        filteredCount = items.length;
+    } else if (filter === 'Active') {
+        filteredCount = items.filter(item => !item.checked).length;
+    } else if (filter === 'Completed') {
+        filteredCount = items.filter(item => item.checked).length;
+    }
 
     return (
         <div className="todo-status">
-            <p>{checked ? `${items.length - 1} item(s) left` : `${items.length} item(s) left`}</p>
-            <p>Clear Completed</p>
+            <p>{filteredCount} {filteredCount === 0 || filteredCount === 1 ? 'item' : 'items'} {filter.toLowerCase()}</p>
+            <p onClick={clearCompleted} style={{ cursor: 'pointer' }}>Clear Completed</p>
         </div>
-    )
+    );
 }

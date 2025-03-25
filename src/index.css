@@ -170,6 +170,10 @@ input::placeholder {
   border-radius: 0.3rem;
 }
 
+.todo-features p {
+  cursor: pointer;
+}
+
 .todo-features .active {
   color: var(--active-color);
 }
@@ -179,4 +183,12 @@ input::placeholder {
   margin: 3rem 0;
   color: var(--feature-color);
   font-size: 14px;
+}
+
+.draggable-item {
+  background: white;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

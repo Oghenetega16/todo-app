@@ -60,6 +60,7 @@ export default function App() {
                 checked={item.checked}
                 handleCheck={() => handleCheck(index)}
                 handleDeleteItem={() => handleDeleteItem(index)}
+                filter = {filter}
               />
             ))}
           </ul>

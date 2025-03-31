@@ -1,7 +1,7 @@
 import checkIcon from '../assets/images/icon-check.svg'
 import closeIcon from '../assets/images/icon-cross.svg'
 
-export default function TodoList({ list, checked, handleCheck, handleDeleteItem }) {
+export default function TodoList({ list, checked, handleCheck, handleDeleteItem, filter}) {
 
     return (
         <li 
@@ -23,7 +23,7 @@ export default function TodoList({ list, checked, handleCheck, handleDeleteItem 
                 </div>
                 <span className="todo-text">{list}</span>
             </div>
-            <img 
+            {filter == 'Active' || filter == 'Completed' ? <img 
                 className="close-icon" 
                 src={closeIcon} 
                 alt="Delete item" 
@@ -32,7 +32,7 @@ export default function TodoList({ list, checked, handleCheck, handleDeleteItem 
                     handleDeleteItem();
                 }}
                 role="button"
-            />
+            /> : null}
         </li>          
     )
 }

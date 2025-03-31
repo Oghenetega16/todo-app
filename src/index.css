@@ -37,10 +37,8 @@ header svg {
 }
 
 .header {
-  color: white;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  color: white;
   padding: 2rem 1.5rem 8rem 1.5rem;
   background-image: url(./assets/images/bg-mobile-light.jpg);
   background-repeat: no-repeat;
@@ -48,19 +46,29 @@ header svg {
 }
 
 .header-dark {
-  color: white;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  color: white;
   padding: 2.5rem 1.5rem 8rem 1.5rem;
   background-image: url(./assets/images/bg-mobile-dark.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.header-text {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
 h1 {
   letter-spacing: .6rem;
   font-size: 25px;
+}
+
+li {
+  cursor: pointer;
 }
 
 .main {
@@ -191,4 +199,39 @@ input::placeholder {
   margin-bottom: 5px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .header {
+    background-image: url('./assets/images/bg-desktop-light.jpg');
+  }
+
+  .header-dark {
+    background-image: url('./assets/images/bg-desktop-dark.jpg');
+  }
+
+  .header-text {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .main {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: -5rem auto 0 auto;
+  }
+
+  .todo-features {
+    margin-top: -2.5rem;
+    padding: .6rem;
+  }
+
+  .todo-status p {
+    z-index: 2;
+    font-weight: 700;
+  }
 }

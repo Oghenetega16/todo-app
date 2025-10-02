@@ -1,5 +1,4 @@
 export default function TodoStatus({ items, filter, clearCompleted }) {
-    let itemsLeft = items.filter(item => !item.checked).length;
     let filteredCount = 0;
 
     if (filter === 'All') {

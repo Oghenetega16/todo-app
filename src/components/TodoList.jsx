@@ -23,6 +23,7 @@ export default function TodoList({ list, checked, handleCheck, handleDeleteItem,
                 </div>
                 <span className="todo-text">{list}</span>
             </div>
+            
             {filter == 'Active' || filter == 'Completed' ? <img 
                 className="close-icon" 
                 src={closeIcon} 
